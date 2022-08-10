@@ -1,0 +1,16 @@
+---
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: date/time stamp for playbook start
+      raw: /usr/bin/date > /home/ansible/playbook_start.log
+    - name: install httpd
+      yum: name=httpd state=present
+      notify: restart httpd
+    - name: date/time stamp for playbook end
+      raw: /usr/bin/date > /home/ansible/playbook_end.log
+  handlers:
+    -  name: restart httpd
+       action: service name=httpd state=restarted 

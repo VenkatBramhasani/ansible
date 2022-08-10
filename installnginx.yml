@@ -1,0 +1,2 @@
+- name: install nginx
+  action: yum name=nginx state=installed
