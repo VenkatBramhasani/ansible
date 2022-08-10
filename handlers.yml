@@ -5,9 +5,9 @@
   become: yes
   connection: ssh
   tasks:
-    name: install nginx
-    action: yum name=nginx state=installed
-    notify: restart nginx
-  Handlers:
+    - name: install nginx
+      action: yum name=nginx state=installed
+      notify: restart nginx
+  handlers:
     - name: restart nginx
       action: service name=nginx state=restarted
